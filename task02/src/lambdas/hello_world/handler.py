@@ -27,9 +27,11 @@ def lambda_handler(event, context):
     if path == "/hello" and method == "GET":
         return {
             "statusCode": 200,
-            "message": "Hello from Lambda"
+            "headers": {"Content-Type": "application/json"},
+            "body": '{"statusCode": 200, "message": "Hello from Lambda"}'
         }
     return {
         "statusCode": 400,
-        "message": f"Bad request syntax or unsupported method. Request path: {path}. HTTP method: {method}"
+        "headers": {"Content-Type": "application/json"},
+        "body": f'{{"statusCode": 400, "message": "Bad request syntax or unsupported method. Request path: {path}. HTTP method: {method}"}}'
     }
